@@ -1,121 +1,159 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import './styles.css';
 
-const App = () => {
+const Section = ({ title, children, id, bg = 'dark' }) => (
+  <section id={id} className={`content-section ${bg}`}>
+    <div className="container">
+      <h2 className="section-title">{title}</h2>
+      <div className="section-content">{children}</div>
+    </div>
+  </section>
+);
+
+export default function App() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <div className="app-wrapper">
-      {/* Hero Section */}
-      <header className="hero">
-        <div className="hero-content">
-          <h1>كوكب الشرق</h1>
-          <p>السيرة الكاملة لسيدة الغناء العربي.. أم كلثوم</p>
-        </div>
-      </header>
-
+    <div className="app-container">
       {/* Navigation */}
-      <nav>
-        <div className="container">
-          <ul>
-            <li><a href="#about">النشأة</a></li>
-            <li><a href="#journey">المسيرة الفنية</a></li>
-            <li><a href="#impact">الأثر الوطني</a></li>
-            <li><a href="#legacy">الروائع</a></li>
-          </ul>
+      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        <div className="nav-logo">أم كلثوم</div>
+        <div className="nav-links">
+          <a href="#biography">السيرة</a>
+          <a href="#art">الفن</a>
+          <a href="#national">الوطن</a>
+          <a href="#legacy">الإرث</a>
         </div>
       </nav>
 
-      {/* About Section */}
-      <section id="about" className="container">
-        <h2 className="section-title">من طماي الزهايرة إلى عرش الغناء</h2>
-        <div className="chronicle-grid">
-          <div className="chronicle-item">
-            <h3>الميلاد والنشأة (1898 - 1920)</h3>
+      {/* Hero Section */}
+      <header className="hero">
+        <div className="hero-overlay"></div>
+        <div className="hero-text">
+          <h1>كوكب الشرق</h1>
+          <p>سيدة الغناء العربي.. صوت مصر الذي لم يغب قط</p>
+          <div className="golden-line"></div>
+        </div>
+      </header>
+
+      {/* Introduction */}
+      <Section title="النشأة: من طماي الزهايرة إلى سماء العالمية" id="biography">
+        <div className="rich-text">
+          <p className="lead">
+            في قرية طماي الزهايرة، وُلدت "فاطمة إبراهيم البلتاجي" في ظروف متواضعة، لكنها كانت تحمل في حنجرتها كنزاً سيغير وجه الموسيقى العربية للأبد.
+          </p>
+          <div className="grid-2">
+            <div className="card">
+              <h3>البدايات (1898 - 1920)</h3>
+              <p>
+                بدأت الطفلة فاطمة رحلتها في الإنشاد مع والدها الشيخ إبراهيم، مرتديةً زي "صبي" لتتمكن من الغناء في الأفراح والموالد. كانت هذه المرحلة هي حجر الأساس لمخارج حروفها السليمة وتمكنها من المقامات الموسيقية المعقدة.
+              </p>
+            </div>
+            <div className="card">
+              <h3>الانتقال للقاهرة (1923)</h3>
+              <p>
+                نقطة التحول الكبرى كانت لقاءها بالشيخ أبو العلا محمد والشاعر أحمد رامي. غلعت ثياب المنشدة وارتدت ثوب الفنانة العصرية، لتبدأ مسيرة اكتساح المسارح في العاصمة التي لا تنام.
+              </p>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* Deep Content Section 1: The Artistry */}
+      <Section title="الثالوث المقدس: قمة الهرم الغنائي" id="art" bg="light">
+        <div className="timeline">
+          <div className="timeline-item">
+            <h4>ثورة القصبجي ورياض السنباطي</h4>
             <p>
-              وُلدت فاطمة إبراهيم البلتاجي في قرية طماي الزهايرة بمركز السنبلاوين بمحافظة الدقهلية. نشأت في بيت متواضع لأب يعمل مؤذناً ومنشداً في حفلات الموالد. بدأت حكايتها عندما انتبه والدها إلى قوة خامة صوتها وهي طفلة لم تتجاوز العاشرة، فبدأت تغني معه وهي ترتدي ملابس "الصبيان" لتنشد التواشيح الدينية والقصائد النبوية.
+              لم يكن غناء أم كلثوم مجرد طرب، بل كان مشروعاً موسيقياً. محمد القصبجي منحها الحداثة، بينما كان رياض السنباطي هو "رفيق الدرب" الذي طوع القصائد الجاهلية والمناجاة الروحية لصوتها. عبقريته في تلحين "الأطلال" تُعد حتى اليوم ذروة الموسيقى العربية الكلاسيكية.
             </p>
+          </div>
+          <div className="timeline-item">
+            <h4>مدرسة أحمد رامي وبيرم التونسي</h4>
             <p>
-              كان صوتها في تلك الفترة يتميز بحدة فطرية وقوة "فولاذية"، وقد جذب انتباه كبار الملحنين والمطربين في ذلك العصر مثل الشيخ زكريا أحمد وأبو العلا محمد، الذين أدركوا أن طفلة الريف تحمل حنجرة لا تتكرر في التاريخ.
+              بين فصحى رامي التي صاغت مشاعر الحب العذري، وعامية بيرم التي لامست وجدان الشعب المصري البسيط، شكّلت أم كلثوم جبهة لغوية فريدة، جعلت من الفلاح في حقله والملك في قصره يرددون نفس الكلمات.
+            </p>
+          </div>
+          <div className="timeline-item">
+            <h4>لقاء السحاب: عبد الوهاب وأم كلثوم</h4>
+            <p>
+              بعد عقود من التنافس، تم اللقاء "بإيعاز سياسي" في أغنية (إنت عمري) عام 1964. كان هذا اللقاء بمثابة زلزال فني غيّر مفاهيم التلحين، حيث دخل الجيتار الكهربائي والأدوات الحديثة في فرقة الست.
             </p>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* Quote */}
-      <div className="quote-section">
-        <p className="quote-text">"أنا لا أغني بلساني، بل أغني بقلب كل مصري وعربي."</p>
-      </div>
-
-      {/* Journey Section */}
-      <section id="journey" className="container">
-        <h2 className="section-title">المحطات الذهبية والتحولات الكبرى</h2>
-        <div className="chronicle-grid">
-          <div className="chronicle-item">
-            <h3>الصعود إلى القمة (الارتحال إلى القاهرة)</h3>
+      {/* Section 3: National Role */}
+      <Section title="المجاهدة بصوتها: دور المحاربة" id="national">
+        <div className="national-grid">
+          <div className="national-content">
+            <h3>المجهود الحربي</h3>
             <p>
-              في عام 1923، استقرت أم كلثوم في القاهرة، وبدأت رحلة التحول من "منشدة ريفية" إلى "مطربة عصرية". تخلت عن الزي التقليدي وبدأت في تقديم أغاني عاطفية راقية. كانت نقطة التحول الكبرى هي لقاؤها بالشاعر أحمد رامي الذي صقل لغتها وثقافتها، ثم الملحن محمد القصبجي الذي أدخل الآلات الغربية في فرقتها.
+              بعد نكسة 1967، لم تكتفِ "الست" بالحزن، بل جابت عواصم العالم (باريس، تونس، الكويت، المغرب) في رحلات تاريخية لجمع التبرعات لإعادة بناء الجيش المصري. كانت تُعامل معاملة "رئيس دولة"، حيث كانت تُستقبل بالسجاد الأحمر والمراسم الرسمية، مؤكدة أن الفن سلاح لا يقل قوة عن الرصاص.
             </p>
+            <div className="quote">
+              "أنا لا أغني لمصر، أنا أحمل مصر في صوتي للعالم."
+            </div>
           </div>
-          <div className="chronicle-item">
-            <h3>عصر "السنباطي" والقصائد الخالدة</h3>
-            <p>
-              ارتبط اسم أم كلثوم بالملحن العبقري رياض السنباطي، الذي قدم لها أعظم قصائد الشعر العربي. من "الأطلال" التي تُعتبر تاج الأغنية العربية، إلى "نهج البردة" و"سلوا قلبي". وصل صوتها في هذه المرحلة إلى نضج تقني مذهل، حيث كانت تتنقل بين المقامات الموسيقية بسلاسة مذهلة وتحكم لم يسبق له مثيل.
-            </p>
+          <div className="sidebar-info">
+            <div className="info-box">
+              <h4>أوسمة ونياشين</h4>
+              <ul>
+                <li>قلادة النيل العظمى (أعلى وسام مصري)</li>
+                <li>وسام الاستحقاق السوري</li>
+                <li>وسام الكفاءة الفكرية من ملك المغرب</li>
+                <li>وسام الأرز اللبناني</li>
+              </ul>
+            </div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* National Impact Section */}
-      <section id="impact" style={{background: '#111'}}>
-        <div className="container">
-          <h2 className="section-title">القوة الناعمة والدور الوطني</h2>
-          <div className="chronicle-item" style={{background: 'transparent', borderRightColor: '#c5a059'}}>
-            <h3>سفيرة فوق العادة</h3>
-            <p>
-              لم تكن أم كلثوم مجرد مطربة، بل كانت رمزاً وطنياً. بعد نكسة 1967، جابت دول العالم في رحلات "المجهود الحربي"، مقدمةً أرباح حفلاتها بالكامل لإعادة بناء الجيش المصري. استُقبلت استقبال الملوك والرؤساء في تونس، المغرب، السودان، وليبيا، وحتى في مسرح "أوليمبيا" الشهير بباريس، حيث كانت أول مطربة عربية تقف على خشبة هذا المسرح العالمي.
-            </p>
-            <p>
-              قيل عنها إن صوتها كان يوحّد العرب من المحيط إلى الخليج في تمام العاشرة مساءً من أول خميس في كل شهر، حيث تخلو الشوارع وتلتف الشعوب حول المذياع.
-            </p>
+      {/* Section 4: Iconography */}
+      <Section title="أسرار الأيقونة: المنديل والنظارة" id="legacy" bg="light">
+        <div className="icon-cards">
+          <div className="icon-card">
+            <div className="icon-placeholder">🕶️</div>
+            <h3>النظارة السوداء</h3>
+            <p>لم تكن مجرد موضة، بل لمرض جحوظ العينين الناتج عن خلل في الغدة الدرقية، ومع الوقت تحولت لرمز للغموض والهيبة.</p>
+          </div>
+          <div className="icon-card">
+            <div className="icon-placeholder">🧣</div>
+            <h3>المنديل</h3>
+            <p>كانت تمسك به للتغلب على توتر الوقوف أمام الجمهور، وكان يُصنع من أفخر أنواع الحرير ليتماشى مع فساتينها الأسطورية.</p>
+          </div>
+          <div className="icon-card">
+            <div className="icon-placeholder">🎙️</div>
+            <h3>الوقوف خلف الميكروفون</h3>
+            <p>سر ابتعادها عن الميكروفون بمسافة مترين كان قوة حنجرتها الجبارة التي كانت قادرة على تحطيم الميكروفونات الحساسة في ذلك الوقت.</p>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {/* Legacy Section */}
-      <section id="legacy" className="container">
-        <h2 className="section-title">إرث لا يغيب</h2>
-        <div className="legacy-grid">
-          <div className="legacy-card">
-            <h4>ثورة التكنولوجيا</h4>
-            <p>أول مطربة عربية يُستخدم صوتها في تقنيات الهولوغرام الحديثة، ليعود صوتها يصدح في دور الأوبرا العربية والعالمية في القرن الواحد والعشرين.</p>
-          </div>
-          <div className="legacy-card">
-            <h4>أرقام قياسية</h4>
-            <p>سجلت مئات الساعات من الغناء الحي، وتعتبر أغنية "أنت عمري" (لقاء السحاب مع عبد الوهاب) واحدة من أكثر الأغاني مبيعاً واستماعاً في تاريخ الموسيقى الشرقية.</p>
-          </div>
-          <div className="legacy-card">
-            <h4>الرحيل المهيب</h4>
-            <p>في فبراير 1975، خرجت مصر والعالم العربي في جنازة مهيبة ضمت الملايين، في مشهد لم يتكرر إلا في جنائز الزعماء الكبار، مودعين "الست" التي لم يملّوا سماعها أبداً.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Deep Content Section */}
-      <section className="container" style={{paddingTop: '0'}}>
-        <div className="chronicle-item">
-          <h3>أسرار المنديل والنظارة</h3>
+      {/* The End Section */}
+      <Section title="الرحيل والبقاء">
+        <div className="final-word">
           <p>
-            كثيراً ما تساءل الجمهور عن سر المنديل والنظارة السوداء. المنديل كان وسيلة لتخفيف توترها الشديد أمام الجمهور، حيث كانت تضغط عليه بقوة من هيبة المسرح رغم سنين الخبرة. أما النظارة فكانت لإخفاء جحوظ بسيط في العين ناتج عن مشاكل في الغدة الدرقية، لكنها تحولت مع الوقت إلى جزء من "الكاريزما" والغموض الكلثومي الفريد.
+            في 3 فبراير 1975، توقفت نبضات "كوكب الشرق"، وخرج الملايين في جنازة وصفت بأنها الأكبر في تاريخ الشرق الأوسط بعد جنازة جمال عبد الناصر. رحلت فاطمة البلتاجي، وبقيت "أم كلثوم" ظاهرة كونية، حيث لا تزال إذاعات مخصصة في كافة أنحاء العالم تبث صوتها في تمام العاشرة مساءً، وكأن الزمن قد توقف إجلالاً لهذا الصوت.
           </p>
         </div>
-      </section>
+      </Section>
 
-      <footer>
-        <div className="container">
-          <p>تم إعداد هذا المحتوى تخليداً لذكرى سيدة الغناء العربي &copy; 2024</p>
-          <p style={{color: '#c5a059', fontSize: '0.9rem', marginTop: '10px'}}>صوت مصر الخالد</p>
+      {/* Footer */}
+      <footer className="main-footer">
+        <div className="footer-content">
+          <p>تم تطوير هذه الموسوعة تخليداً لذكرى كوكب الشرق</p>
+          <div className="footer-links">
+            <span>&copy; 2024 جميع الحقوق محفوظة لمحبي التراث العربي</span>
+          </div>
         </div>
       </footer>
     </div>
   );
-};
-
-export default App;
+}
