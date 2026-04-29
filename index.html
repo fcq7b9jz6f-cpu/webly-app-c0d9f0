@@ -4,266 +4,262 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>موقع عن قصة حياة ام كلثوم</title>
-<style>@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;700;900&display=swap');
-
-:root {
-  --primary-gold: #d4af37;
-  --deep-black: #0c0c0c;
-  --soft-white: #f4f1ea;
-  --dark-gold: #b08d26;
-  --glass-bg: rgba(255, 255, 255, 0.05);
+<style>:root {
+  --ios-bg: #f2f2f7;
+  --ios-card: rgba(255, 255, 255, 0.85);
+  --ios-accent: #007aff;
+  --ios-text: #000000;
+  --ios-blur: blur(20px);
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
-  font-family: 'Cairo', sans-serif;
-  background-color: var(--deep-black);
-  color: var(--soft-white);
-  line-height: 1.8;
+  background-color: var(--ios-bg);
+  color: var(--ios-text);
   direction: rtl;
+  overflow-x: hidden;
 }
 
-h1, h2, h3, .nav-logo {
-  font-family: 'Amiri', serif;
-}
-
-.container {
-  max-width: 1100px;
+.ios-container {
+  max-width: 500px;
   margin: 0 auto;
-  padding: 0 20px;
+  background: var(--ios-bg);
+  min-height: 100vh;
+  padding-bottom: 100px;
+  position: relative;
 }
 
-/* Navbar */
-.navbar {
-  position: fixed;
+/* iOS 26 Glassmorphism Header */
+.ios-header {
+  position: sticky;
   top: 0;
-  width: 100%;
+  z-index: 100;
+  padding: 10px 20px 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ios-header.glass {
+  background: var(--ios-card);
+  backdrop-filter: var(--ios-blur);
+  border-bottom: 0.5px solid rgba(0,0,0,0.1);
+}
+
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.nav-main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 50px;
-  z-index: 1000;
-  transition: 0.4s;
-  background: transparent;
 }
 
-.navbar.scrolled {
-  background: rgba(12, 12, 12, 0.95);
-  padding: 10px 50px;
-  border-bottom: 1px solid var(--primary-gold);
+.nav-main h1 {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -1px;
 }
 
-.nav-logo {
-  font-size: 1.8rem;
-  color: var(--primary-gold);
-  font-weight: bold;
-}
-
-.nav-links a {
-  color: var(--soft-white);
-  text-decoration: none;
-  margin-right: 30px;
-  font-size: 1.1rem;
-  transition: 0.3s;
-}
-
-.nav-links a:hover {
-  color: var(--primary-gold);
-}
-
-/* Hero */
-.hero {
-  height: 85vh;
-  background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); /* صورة تعبيرية للميكروفون العتيق */
-  background-size: cover;
-  background-position: center;
+.profile-badge {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #af52de, #5856d6);
+  border-radius: 50%;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  font-weight: bold;
+}
+
+/* Content Layout */
+.ios-content {
+  padding: 20px;
+}
+
+.hero-card {
+  height: 400px;
+  background: url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&q=80') center;
+  background-size: cover;
+  border-radius: 30px;
+  margin-bottom: 25px;
   position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
 .hero-overlay {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(rgba(0,0,0,0.4), var(--deep-black));
+  right: 0;
+  padding: 30px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: white;
 }
 
-.hero-text {
-  position: relative;
-  z-index: 1;
+.badge {
+  background: var(--ios-accent);
+  padding: 4px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
-.hero h1 {
-  font-size: 5rem;
-  color: var(--primary-gold);
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-  margin-bottom: 10px;
+.hero-overlay h2 {
+  font-size: 28px;
+  margin: 10px 0;
 }
 
-.golden-line {
-  height: 3px;
-  width: 150px;
-  background: var(--primary-gold);
-  margin: 20px auto;
+.ios-btn-primary {
+  background: white;
+  color: black;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 20px;
+  font-weight: 700;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
 
-/* Section Styling */
-.content-section {
-  padding: 100px 0;
+.ios-btn-primary:active {
+  transform: scale(0.95);
 }
 
-.content-section.light {
-  background-color: #1a1a1a;
-}
-
-.section-title {
-  font-size: 2.8rem;
-  margin-bottom: 60px;
-  text-align: center;
-  color: var(--primary-gold);
-  border-bottom: 2px solid var(--primary-gold);
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  padding-bottom: 10px;
-}
-
-/* Grid & Cards */
-.grid-2 {
+/* Stats Grid */
+.stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin-top: 40px;
+  gap: 15px;
+  margin-bottom: 25px;
 }
 
-.card {
-  background: var(--glass-bg);
-  padding: 30px;
-  border-radius: 15px;
-  border: 1px solid rgba(212, 175, 55, 0.2);
-  transition: 0.3s;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  border-color: var(--primary-gold);
-}
-
-.card h3 {
-  color: var(--primary-gold);
-  margin-bottom: 15px;
-}
-
-/* Timeline */
-.timeline {
-  border-right: 2px solid var(--primary-gold);
-  padding-right: 30px;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.timeline-item {
-  margin-bottom: 40px;
-  position: relative;
-}
-
-.timeline-item::after {
-  content: '';
-  position: absolute;
-  top: 10px;
-  right: -37px;
-  width: 12px;
-  height: 12px;
-  background: var(--primary-gold);
-  border-radius: 50%;
-}
-
-/* National Grid */
-.national-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 40px;
-}
-
-.quote {
-  font-style: italic;
-  font-family: 'Amiri', serif;
-  font-size: 1.5rem;
-  border-right: 4px solid var(--primary-gold);
-  padding-right: 20px;
-  margin-top: 30px;
-  color: var(--primary-gold);
-}
-
-.info-box {
-  background: var(--primary-gold);
-  color: var(--deep-black);
-  padding: 30px;
-  border-radius: 10px;
-}
-
-.info-box h4 {
-  margin-bottom: 15px;
-  text-decoration: underline;
-}
-
-.info-box ul {
-  list-style-type: square;
-  padding-right: 20px;
-}
-
-/* Icon Cards */
-.icon-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.icon-card {
+.stat-card {
+  background: var(--ios-card);
+  backdrop-filter: var(--ios-blur);
+  padding: 20px;
+  border-radius: 24px;
   text-align: center;
-  padding: 40px;
-  background: #252525;
-  border-radius: 50% 50% 0 0;
-  border: 1px solid var(--primary-gold);
+  border: 1px solid rgba(255,255,255,0.3);
 }
 
-.icon-placeholder {
-  font-size: 3rem;
+.stat-card h3 {
+  font-size: 24px;
+  color: var(--ios-accent);
+}
+
+/* Tabs UI */
+.ios-tabs {
+  display: flex;
+  background: rgba(0,0,0,0.05);
+  padding: 5px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  justify-content: space-around;
+}
+
+.ios-tabs button {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.ios-tabs button.active {
+  background: white;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.ios-detail-card {
+  background: var(--ios-card);
+  padding: 25px;
+  border-radius: 30px;
+  margin-bottom: 25px;
+  min-height: 200px;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Extensive Bio */
+.ios-card {
+  background: white;
+  padding: 25px;
+  border-radius: 30px;
   margin-bottom: 20px;
 }
 
-/* Footer */
-.main-footer {
-  padding: 60px 0;
-  background: #000;
-  text-align: center;
-  border-top: 1px solid var(--primary-gold);
+.ios-card h3 {
+  margin-bottom: 15px;
+  font-size: 22px;
 }
 
-.final-word {
-  max-width: 800px;
+.ios-card p {
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Footer Tab Bar */
+.ios-tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 500px;
   margin: 0 auto;
-  text-align: center;
-  font-size: 1.2rem;
+  height: 85px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(25px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 0.5px solid rgba(0,0,0,0.1);
+  padding-bottom: 20px;
 }
 
-@media (max-width: 768px) {
-  .grid-2, .national-grid, .icon-cards {
-    grid-template-columns: 1fr;
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 11px;
+  color: #8e8e93;
+}
+
+.tab-item.active {
+  color: var(--ios-accent);
+}
+
+.tab-item span:first-child {
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+/* Large Screens */
+@media (min-width: 501px) {
+  body {
+    background: #000;
   }
-  .navbar { padding: 15px 20px; }
-  .hero h1 { font-size: 3rem; }
-  .nav-links { display: none; }
 }
 </style>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -276,158 +272,132 @@ h1, h2, h3, .nav-logo {
 import React, { useState, useEffect } from 'react';
 import './styles.css';
 
-const Section = ({ title, children, id, bg = 'dark' }) => (
-  <section id={id} className={`content-section ${bg}`}>
-    <div className="container">
-      <h2 className="section-title">{title}</h2>
-      <div className="section-content">{children}</div>
-    </div>
-  </section>
-);
+const sections = [
+  {
+    id: 'origin',
+    title: 'الجذور والنشأة',
+    icon: '🌱',
+    content: 'في قرية طماي الزهايرة، ولدت الأسطورة. بدأت كطفلة تنشد في الموالد بزي بدوي، حيث اكتشف والدها الشيخ إبراهيم البلتاجي قوة صوتها الفطرية التي كانت تهز جدران المساجد والبيوت الريفية. لم تكن مجرد موهبة، بل كانت ظاهرة صوتية نادرة تتشكل في أحضان الريف المصري.'
+  },
+  {
+    id: 'golden',
+    title: 'العصر الذهبي',
+    icon: '🎭',
+    content: 'انتقلت للقاهرة لتبدأ رحلة الصعود. من مسارح عماد الدين إلى قمة الهرم الغنائي. شكلت مع أحمد رامي ومحمد القصبجي مدرسة فنية جديدة غيرت وجه الموسيقى العربية. غنت القصيدة الفصحى والزجل العامي بقدرة مذهلة على التعبير، مما جعلها "شخصية العام" في كل زمان.'
+  },
+  {
+    id: 'national',
+    title: 'الدور الوطني',
+    icon: '🇪🇬',
+    content: 'لم تكن صوتاً فحسب، بل كانت جيشاً كاملاً. بعد نكسة 1967، طافت العالم لجمع التبرعات للمجهود الحربي. من باريس إلى الكويت، كانت أم كلثوم رمزاً للصمود المصري، حيث استُقبلت كملكة ورئيسة دولة، مؤكدة أن الفن هو السلاح الأقوى في وقت المحن.'
+  },
+  {
+    id: 'legacy',
+    title: 'الإرث الخالد',
+    icon: '✨',
+    content: 'رحلت الست جسداً وبقيت صوتاً لا يغيب. ما زالت حفلاتها التي تُبث في منتصف الليل طقساً مقدساً للملايين. أصبحت نظارتها السوداء ومنديلها الحريري أيقونات عالمية تدرس في تاريخ الموضة والفهم العميق للكاريزما الفنية.'
+  }
+];
+
+const stats = [
+  { label: 'أغنية', value: '300+' },
+  { label: 'سنة غناء', value: '50+' },
+  { label: 'حضور جنازة', value: '4M+' },
+  { label: 'جوائز دولية', value: '15' }
+];
 
 var App = function App() {
+  const [activeTab, setActiveTab] = useState('origin');
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div className="app-container">
-      {/* Navigation */}
-      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-        <div className="nav-logo">أم كلثوم</div>
-        <div className="nav-links">
-          <a href="#biography">السيرة</a>
-          <a href="#art">الفن</a>
-          <a href="#national">الوطن</a>
-          <a href="#legacy">الإرث</a>
+    <div className="ios-container">
+      {/* Dynamic Header UI for iOS 26 */}
+      <header className={`ios-header ${scrolled ? 'glass' : ''}`}>
+        <div className="status-bar">
+          <span className="time">9:41</span>
+          <div className="status-icons">
+            <span className="signal">📶</span>
+            <span className="battery">🔋</span>
+          </div>
         </div>
-      </nav>
-
-      {/* Hero Section */}
-      <header className="hero">
-        <div className="hero-overlay"></div>
-        <div className="hero-text">
+        <nav className="nav-main">
           <h1>كوكب الشرق</h1>
-          <p>سيدة الغناء العربي.. صوت مصر الذي لم يغب قط</p>
-          <div className="golden-line"></div>
-        </div>
+          <div className="profile-badge">UK</div>
+        </nav>
       </header>
 
-      {/* Introduction */}
-      <Section title="النشأة: من طماي الزهايرة إلى سماء العالمية" id="biography">
-        <div className="rich-text">
-          <p className="lead">
-            في قرية طماي الزهايرة، وُلدت "فاطمة إبراهيم البلتاجي" في ظروف متواضعة، لكنها كانت تحمل في حنجرتها كنزاً سيغير وجه الموسيقى العربية للأبد.
-          </p>
-          <div className="grid-2">
-            <div className="card">
-              <h3>البدايات (1898 - 1920)</h3>
-              <p>
-                بدأت الطفلة فاطمة رحلتها في الإنشاد مع والدها الشيخ إبراهيم، مرتديةً زي "صبي" لتتمكن من الغناء في الأفراح والموالد. كانت هذه المرحلة هي حجر الأساس لمخارج حروفها السليمة وتمكنها من المقامات الموسيقية المعقدة.
-              </p>
-            </div>
-            <div className="card">
-              <h3>الانتقال للقاهرة (1923)</h3>
-              <p>
-                نقطة التحول الكبرى كانت لقاءها بالشيخ أبو العلا محمد والشاعر أحمد رامي. غلعت ثياب المنشدة وارتدت ثوب الفنانة العصرية، لتبدأ مسيرة اكتساح المسارح في العاصمة التي لا تنام.
-              </p>
-            </div>
+      <main className="ios-content">
+        {/* Dynamic Hero Section */}
+        <section className="hero-card">
+          <div className="hero-overlay">
+            <span className="badge">Featured</span>
+            <h2>أسطورة الغناء العربي</h2>
+            <p>رحلة في حياة السيدة التي وحدت العرب بصوتها</p>
+            <button className="ios-btn-primary">استمع الآن</button>
           </div>
-        </div>
-      </Section>
+        </section>
 
-      {/* Deep Content Section 1: The Artistry */}
-      <Section title="الثالوث المقدس: قمة الهرم الغنائي" id="art" bg="light">
-        <div className="timeline">
-          <div className="timeline-item">
-            <h4>ثورة القصبجي ورياض السنباطي</h4>
+        {/* Dynamic Stats Grid */}
+        <section className="stats-grid">
+          {stats.map((stat, i) => (
+            <div key={i} className="stat-card">
+              <h3>{stat.value}</h3>
+              <p>{stat.label}</p>
+            </div>
+          ))}
+        </section>
+
+        {/* Content Tabs - iOS 26 Style */}
+        <section className="content-explorer">
+          <div className="ios-tabs">
+            {sections.map(s => (
+              <button 
+                key={s.id}
+                className={activeTab === s.id ? 'active' : ''}
+                onClick={() => setActiveTab(s.id)}
+              >
+                {s.icon}
+              </button>
+            ))}
+          </div>
+          
+          <div className="ios-detail-card">
+            <h2>{sections.find(s => s.id === activeTab).title}</h2>
+            <p>{sections.find(s => s.id === activeTab).content}</p>
+          </div>
+        </section>
+
+        {/* Long Text Body - Detailed Biography */}
+        <section className="bio-extensive">
+          <div className="ios-card">
+            <h3>التفاصيل الموسيقية والتقنية</h3>
             <p>
-              لم يكن غناء أم كلثوم مجرد طرب، بل كان مشروعاً موسيقياً. محمد القصبجي منحها الحداثة، بينما كان رياض السنباطي هو "رفيق الدرب" الذي طوع القصائد الجاهلية والمناجاة الروحية لصوتها. عبقريته في تلحين "الأطلال" تُعد حتى اليوم ذروة الموسيقى العربية الكلاسيكية.
+              تعتبر أم كلثوم صاحبة "صوت كونترالتو" قوي، وهو أغلظ صوت نسائي، لكنها كانت تتنقل بين الطبقات بمهارة "السوبرانو". 
+              تميزت بطول النفس الاستثنائي الذي كان يسمح لها بإعادة الكوبليه الواحد لأكثر من عشرين مرة بتلوينات مقامية مختلفة دون كلل. 
+              تعاملت مع عمالقة التلحين مثل رياض السنباطي الذي قدم لها "الأطلال" والتي تعتبر "تاج الأغنية العربية"، 
+              وبليغ حمدي الذي نقلها إلى روح العصر بـ "حب إيه" و "ألف ليلة وليلة".
+            </p>
+            <p>
+              علاقتها بالجمهور لم تكن علاقة مطربة بمستمعين، بل كانت علاقة وجدانية. كانت تقرأ وجوه الحاضرين في مسرح قصر النيل، 
+              وتعدل في أدائها بناءً على "السلطنة" التي تراها في عيونهم. 
             </p>
           </div>
-          <div className="timeline-item">
-            <h4>مدرسة أحمد رامي وبيرم التونسي</h4>
-            <p>
-              بين فصحى رامي التي صاغت مشاعر الحب العذري، وعامية بيرم التي لامست وجدان الشعب المصري البسيط، شكّلت أم كلثوم جبهة لغوية فريدة، جعلت من الفلاح في حقله والملك في قصره يرددون نفس الكلمات.
-            </p>
-          </div>
-          <div className="timeline-item">
-            <h4>لقاء السحاب: عبد الوهاب وأم كلثوم</h4>
-            <p>
-              بعد عقود من التنافس، تم اللقاء "بإيعاز سياسي" في أغنية (إنت عمري) عام 1964. كان هذا اللقاء بمثابة زلزال فني غيّر مفاهيم التلحين، حيث دخل الجيتار الكهربائي والأدوات الحديثة في فرقة الست.
-            </p>
-          </div>
-        </div>
-      </Section>
+        </section>
+      </main>
 
-      {/* Section 3: National Role */}
-      <Section title="المجاهدة بصوتها: دور المحاربة" id="national">
-        <div className="national-grid">
-          <div className="national-content">
-            <h3>المجهود الحربي</h3>
-            <p>
-              بعد نكسة 1967، لم تكتفِ "الست" بالحزن، بل جابت عواصم العالم (باريس، تونس، الكويت، المغرب) في رحلات تاريخية لجمع التبرعات لإعادة بناء الجيش المصري. كانت تُعامل معاملة "رئيس دولة"، حيث كانت تُستقبل بالسجاد الأحمر والمراسم الرسمية، مؤكدة أن الفن سلاح لا يقل قوة عن الرصاص.
-            </p>
-            <div className="quote">
-              "أنا لا أغني لمصر، أنا أحمل مصر في صوتي للعالم."
-            </div>
-          </div>
-          <div className="sidebar-info">
-            <div className="info-box">
-              <h4>أوسمة ونياشين</h4>
-              <ul>
-                <li>قلادة النيل العظمى (أعلى وسام مصري)</li>
-                <li>وسام الاستحقاق السوري</li>
-                <li>وسام الكفاءة الفكرية من ملك المغرب</li>
-                <li>وسام الأرز اللبناني</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Section 4: Iconography */}
-      <Section title="أسرار الأيقونة: المنديل والنظارة" id="legacy" bg="light">
-        <div className="icon-cards">
-          <div className="icon-card">
-            <div className="icon-placeholder">🕶️</div>
-            <h3>النظارة السوداء</h3>
-            <p>لم تكن مجرد موضة، بل لمرض جحوظ العينين الناتج عن خلل في الغدة الدرقية، ومع الوقت تحولت لرمز للغموض والهيبة.</p>
-          </div>
-          <div className="icon-card">
-            <div className="icon-placeholder">🧣</div>
-            <h3>المنديل</h3>
-            <p>كانت تمسك به للتغلب على توتر الوقوف أمام الجمهور، وكان يُصنع من أفخر أنواع الحرير ليتماشى مع فساتينها الأسطورية.</p>
-          </div>
-          <div className="icon-card">
-            <div className="icon-placeholder">🎙️</div>
-            <h3>الوقوف خلف الميكروفون</h3>
-            <p>سر ابتعادها عن الميكروفون بمسافة مترين كان قوة حنجرتها الجبارة التي كانت قادرة على تحطيم الميكروفونات الحساسة في ذلك الوقت.</p>
-          </div>
-        </div>
-      </Section>
-
-      {/* The End Section */}
-      <Section title="الرحيل والبقاء">
-        <div className="final-word">
-          <p>
-            في 3 فبراير 1975، توقفت نبضات "كوكب الشرق"، وخرج الملايين في جنازة وصفت بأنها الأكبر في تاريخ الشرق الأوسط بعد جنازة جمال عبد الناصر. رحلت فاطمة البلتاجي، وبقيت "أم كلثوم" ظاهرة كونية، حيث لا تزال إذاعات مخصصة في كافة أنحاء العالم تبث صوتها في تمام العاشرة مساءً، وكأن الزمن قد توقف إجلالاً لهذا الصوت.
-          </p>
-        </div>
-      </Section>
-
-      {/* Footer */}
-      <footer className="main-footer">
-        <div className="footer-content">
-          <p>تم تطوير هذه الموسوعة تخليداً لذكرى كوكب الشرق</p>
-          <div className="footer-links">
-            <span>&copy; 2024 جميع الحقوق محفوظة لمحبي التراث العربي</span>
-          </div>
-        </div>
+      {/* iOS 26 Tab Bar */}
+      <footer className="ios-tab-bar">
+        <div className="tab-item active">🏠<span>الرئيسية</span></div>
+        <div className="tab-item">🎵<span>الأغاني</span></div>
+        <div className="tab-item">📸<span>المعرض</span></div>
+        <div className="tab-item">🔎<span>بحث</span></div>
       </footer>
     </div>
   );
