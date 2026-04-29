@@ -1,133 +1,197 @@
 import React, { useState, useEffect } from 'react';
 import './styles.css';
 
-const sections = [
-  {
-    id: 'origin',
-    title: 'الجذور والنشأة',
-    icon: '🌱',
-    content: 'في قرية طماي الزهايرة، ولدت الأسطورة. بدأت كطفلة تنشد في الموالد بزي بدوي، حيث اكتشف والدها الشيخ إبراهيم البلتاجي قوة صوتها الفطرية التي كانت تهز جدران المساجد والبيوت الريفية. لم تكن مجرد موهبة، بل كانت ظاهرة صوتية نادرة تتشكل في أحضان الريف المصري.'
-  },
-  {
-    id: 'golden',
-    title: 'العصر الذهبي',
-    icon: '🎭',
-    content: 'انتقلت للقاهرة لتبدأ رحلة الصعود. من مسارح عماد الدين إلى قمة الهرم الغنائي. شكلت مع أحمد رامي ومحمد القصبجي مدرسة فنية جديدة غيرت وجه الموسيقى العربية. غنت القصيدة الفصحى والزجل العامي بقدرة مذهلة على التعبير، مما جعلها "شخصية العام" في كل زمان.'
-  },
-  {
-    id: 'national',
-    title: 'الدور الوطني',
-    icon: '🇪🇬',
-    content: 'لم تكن صوتاً فحسب، بل كانت جيشاً كاملاً. بعد نكسة 1967، طافت العالم لجمع التبرعات للمجهود الحربي. من باريس إلى الكويت، كانت أم كلثوم رمزاً للصمود المصري، حيث استُقبلت كملكة ورئيسة دولة، مؤكدة أن الفن هو السلاح الأقوى في وقت المحن.'
-  },
-  {
-    id: 'legacy',
-    title: 'الإرث الخالد',
-    icon: '✨',
-    content: 'رحلت الست جسداً وبقيت صوتاً لا يغيب. ما زالت حفلاتها التي تُبث في منتصف الليل طقساً مقدساً للملايين. أصبحت نظارتها السوداء ومنديلها الحريري أيقونات عالمية تدرس في تاريخ الموضة والفهم العميق للكاريزما الفنية.'
-  }
-];
+const Navigation = ({ activeTab, setActiveTab }) => (
+  <nav className="ios-nav">
+    <div className="nav-blur"></div>
+    <div className="nav-items">
+      <button onClick={() => setActiveTab('bio')} className={activeTab === 'bio' ? 'active' : ''}>
+        <span className="icon">◈</span> <span className="label">السيرة</span>
+      </button>
+      <button onClick={() => setActiveTab('art')} className={activeTab === 'art' ? 'active' : ''}>
+        <span className="icon">♫</span> <span className="label">الفن</span>
+      </button>
+      <button onClick={() => setActiveTab('nation')} className={activeTab === 'nation' ? 'active' : ''}>
+        <span className="icon">⚓</span> <span className="label">الوطن</span>
+      </button>
+      <button onClick={() => setActiveTab('legacy')} className={activeTab === 'legacy' ? 'active' : ''}>
+        <span className="icon">⚜</span> <span className="label">الإرث</span>
+      </button>
+    </div>
+  </nav>
+);
 
-const stats = [
-  { label: 'أغنية', value: '300+' },
-  { label: 'سنة غناء', value: '50+' },
-  { label: 'حضور جنازة', value: '4M+' },
-  { label: 'جوائز دولية', value: '15' }
-];
+const SectionHero = () => (
+  <header className="hero-ios">
+    <div className="hero-content">
+      <div className="badge">الذكرى الخالدة</div>
+      <h1>أم كُلثوم</h1>
+      <p className="subtitle">صوتُ مِصر الذي لا يغيب، وهيبةُ الشرق التي لم تزل.</p>
+      <div className="scroll-indicator">تأمل في التفاصيل</div>
+    </div>
+  </header>
+);
+
+const BioSection = () => (
+  <div className="depth-content">
+    <div className="glass-card main-card">
+      <div className="card-header">
+        <span className="chapter">الفصل الأول</span>
+        <h2>الجذور والنشأة (1898 - 1923)</h2>
+      </div>
+      <p>في قلب الريف المصري، وتحديداً في "طماي الزهايرة"، ولدت فاطمة إبراهيم البلتاجي. لم تكن مجرد طفلة ريفية، بل كانت "معجزة" تتشكل بين الحقول. بدأت مسيرتها في عالم الإنشاد الديني، حيث كان والدها يلبسها زي الصبيان لتنشد معه التواشيح، خشيةً من نظرة المجتمع لغناء الفتيات آنذاك. صرخة صوتها الأولى لم تكن مجرد نغم، بل كانت إعلاناً عن بزوغ فجر جديد للموسيقى العربية.</p>
+      
+      <div className="deep-insight">
+        <h3>فلسفة التكوين</h3>
+        <p>تلقنت أصول اللغة ومخارج الحروف من القرآن الكريم، مما منح صوتها "فخامة اللفظ" التي ميزتها عن غيرها. لم تتعلم الغناء في معاهد، بل تعلمته من صمت الليل وصمود الفلاحين، فجاء صوتها محملاً بتراب مصر وعظمة نيلها.</p>
+      </div>
+
+      <div className="grid-details">
+        <div className="info-box">
+          <h3>محطة القاهرة</h3>
+          <p>في عام 1923، اتخذت القرار المصيري بالانتقال للعاصمة. هناك، التقت بالشيخ أبو العلا محمد، الذي صقل موهبتها الفطرية وحولها من منشدة ريفية إلى مطربة تليق بمسارح القاهرة الكبرى.</p>
+        </div>
+        <div className="info-box">
+          <h3>معركة الهوية</h3>
+          <p>واجهت الست في بدايتها تيارات فنية متباينة، لكنها اختارت "الرقي" مساراً، فرفضت الابتذال وأصرت على غناء القصائد الفصحى، مما رفع الذوق العام للأمة بأكملها.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+const ArtSection = () => (
+  <div className="depth-content">
+    <div className="glass-card neon-card">
+      <div className="card-header">
+        <span className="chapter">الفصل الثاني</span>
+        <h2>العصر الذهبي: هندسة الصوت</h2>
+      </div>
+      <p>أم كلثوم لم تكن تغني، كانت "تبني" معماراً صوتياً. تميزت حنجرتها بما يسميه علماء الصوت "الرنين الثابت"، وهي قدرة نادرة على الحفاظ على قوة النغمة وصفائها مهما طال زمن الأداء.</p>
+      
+      <div className="timeline-horizontal">
+        <div className="time-node">
+          <span className="year">1930s</span>
+          <h3>البناء الموسيقي</h3>
+          <p>التعاون مع القصبجي أفرز روائع مثل "رق الحبيب"، حيث أدخلت الآلات الغربية بذكاء شرقي.</p>
+        </div>
+        <div className="time-node">
+          <span className="year">1940s-50s</span>
+          <h3>السنباطية</h3>
+          <p>عصر "رياض السنباطي" والقصائد الطويلة مثل "الأطلال"، التي تعتبر قمة الهرم الغنائي العربي.</p>
+        </div>
+        <div className="time-node">
+          <span className="year">1964</span>
+          <h3>عصر الوهابيات</h3>
+          <p>"لقاء السحاب" في أغنية (إنت عمري) الذي كسر الجمود وحقق أرقام مبيعات خيالية.</p>
+        </div>
+      </div>
+
+      <div className="tech-specs">
+        <h3>أسرار الميكروفون</h3>
+        <ul>
+          <li>كانت أم كلثوم تبتعد عن الميكروفون بمسافة تصل لمترين عندما تطلق صرخات صوتية قوية لتفادي تشويه الصوت.</li>
+          <li>المنديل الشهير لم يكن زينة، بل وسيلة لامتصاص عرق اليدين وللتحكم في القلق، حيث كانت "تهتز" هيبةً من الجمهور في كل مرة.</li>
+          <li>نظارتها السوداء كانت لإخفاء جحوظ عينيها الناتج عن نشاط الغدة الدرقية، لكنها تحولت لأيقونة موضة عالمية.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+);
+
+const NationalSection = () => (
+  <div className="depth-content">
+    <div className="glass-card patriot-card">
+      <div className="card-header">
+        <span className="chapter">الفصل الثالث</span>
+        <h2>الدولة داخل الفنان: المجهود الحربي</h2>
+      </div>
+      <p>بعد نكسة يونيو 1967، تحولت أم كلثوم إلى "وزيرة خارجية شعبية". أعلنت أنها لن تغني في مصر إلا بعد زوال العدوان، وخصصت كل دخل حفلاتها لإعادة بناء الجيش المصري.</p>
+      
+      <div className="global-tour">
+        <h3>قطار الكرامة</h3>
+        <p>طافت باريس، الكويت، تونس، السودان، ولبنان. في "الأوليمبيا" بباريس، وقف الجمهور الفرنسي مبهوراً بهيبة المرأة التي وصفتها الصحافة الفرنسية بأنها "صوت لا يشيخ وشخصية لا تنكسر".</p>
+      </div>
+
+      <blockquote className="ios-quote">
+        "إن أم كلثوم هي المتحدث الرسمي باسم الوجدان العربي.. صوتها كان يجمع العرب حين تفرقهم السياسة."
+      </blockquote>
+
+      <div className="chips-title">أوسمة وتكريمات:</div>
+      <div className="country-chip-container">
+        <span className="chip">وسام الاستحقاق السوري</span>
+        <span className="chip">وسام الرافدين العراقي</span>
+        <span className="chip">جائزة الدولة التقديرية (مصر)</span>
+        <span className="chip">وسام شرف من فرنسا</span>
+      </div>
+    </div>
+  </div>
+);
+
+const LegacySection = () => (
+  <div className="depth-content">
+    <div className="glass-card legacy-card">
+      <div className="card-header">
+        <span className="chapter">الفصل الأخير</span>
+        <h2>الرحيل والهيبة الأبدية</h2>
+      </div>
+      <p>في 3 فبراير 1975، بكى العالم العربي كما لم يبكِ من قبل. جنازتها لم تكن وداعاً لمطربة، بل كانت وداعاً لحقبة كاملة من تاريخ مصر القومي والفني. خرج أربعة ملايين مصري يسيرون خلف نعشها في مشهد مهيب لم يتكرر.</p>
+      
+      <div className="future-legacy">
+        <h3>لماذا بقيت أم كلثوم؟</h3>
+        <p>السر يكمن في "الكمال". كانت تتدرب على الأغنية لأشهر، تتدخل في الكلمة وفي اللحن وتختار العازفين بدقة متناهية. إرثها اليوم يُدرس في كبرى الجامعات العالمية كنموذج للسيطرة الصوتية والكاريزما القوية.</p>
+      </div>
+
+      <div className="modern-stats">
+        <div className="stat">
+          <span className="number">280+</span>
+          <span className="label">عمل فني</span>
+        </div>
+        <div className="stat">
+          <span className="number">100 سنة</span>
+          <span className="label">من التأثير</span>
+        </div>
+        <div className="stat">
+          <span className="number">∞</span>
+          <span className="label">خلود</span>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('origin');
+  const [activeTab, setActiveTab] = useState('bio');
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div className="ios-container">
-      {/* Dynamic Header UI for iOS 26 */}
-      <header className={`ios-header ${scrolled ? 'glass' : ''}`}>
-        <div className="status-bar">
-          <span className="time">9:41</span>
-          <div className="status-icons">
-            <span className="signal">📶</span>
-            <span className="battery">🔋</span>
-          </div>
-        </div>
-        <nav className="nav-main">
-          <h1>كوكب الشرق</h1>
-          <div className="profile-badge">UK</div>
-        </nav>
-      </header>
+    <div className={`ios-26-container ${scrolled ? 'scrolled' : ''}`}>
+      <div className="status-bar">
+        <span>Webly 7G</span>
+        <span>{new Date().toLocaleTimeString('ar-EG', {hour: '2-digit', minute:'2-digit'})}</span>
+        <span>100% 🔋</span>
+      </div>
 
-      <main className="ios-content">
-        {/* Dynamic Hero Section */}
-        <section className="hero-card">
-          <div className="hero-overlay">
-            <span className="badge">Featured</span>
-            <h2>أسطورة الغناء العربي</h2>
-            <p>رحلة في حياة السيدة التي وحدت العرب بصوتها</p>
-            <button className="ios-btn-primary">استمع الآن</button>
-          </div>
-        </section>
+      <SectionHero />
 
-        {/* Dynamic Stats Grid */}
-        <section className="stats-grid">
-          {stats.map((stat, i) => (
-            <div key={i} className="stat-card">
-              <h3>{stat.value}</h3>
-              <p>{stat.label}</p>
-            </div>
-          ))}
-        </section>
-
-        {/* Content Tabs - iOS 26 Style */}
-        <section className="content-explorer">
-          <div className="ios-tabs">
-            {sections.map(s => (
-              <button 
-                key={s.id}
-                className={activeTab === s.id ? 'active' : ''}
-                onClick={() => setActiveTab(s.id)}
-              >
-                {s.icon}
-              </button>
-            ))}
-          </div>
-          
-          <div className="ios-detail-card">
-            <h2>{sections.find(s => s.id === activeTab).title}</h2>
-            <p>{sections.find(s => s.id === activeTab).content}</p>
-          </div>
-        </section>
-
-        {/* Long Text Body - Detailed Biography */}
-        <section className="bio-extensive">
-          <div className="ios-card">
-            <h3>التفاصيل الموسيقية والتقنية</h3>
-            <p>
-              تعتبر أم كلثوم صاحبة "صوت كونترالتو" قوي، وهو أغلظ صوت نسائي، لكنها كانت تتنقل بين الطبقات بمهارة "السوبرانو". 
-              تميزت بطول النفس الاستثنائي الذي كان يسمح لها بإعادة الكوبليه الواحد لأكثر من عشرين مرة بتلوينات مقامية مختلفة دون كلل. 
-              تعاملت مع عمالقة التلحين مثل رياض السنباطي الذي قدم لها "الأطلال" والتي تعتبر "تاج الأغنية العربية"، 
-              وبليغ حمدي الذي نقلها إلى روح العصر بـ "حب إيه" و "ألف ليلة وليلة".
-            </p>
-            <p>
-              علاقتها بالجمهور لم تكن علاقة مطربة بمستمعين، بل كانت علاقة وجدانية. كانت تقرأ وجوه الحاضرين في مسرح قصر النيل، 
-              وتعدل في أدائها بناءً على "السلطنة" التي تراها في عيونهم. 
-            </p>
-          </div>
-        </section>
+      <main className="scroll-area">
+        {activeTab === 'bio' && <BioSection />}
+        {activeTab === 'art' && <ArtSection />}
+        {activeTab === 'nation' && <NationalSection />}
+        {activeTab === 'legacy' && <LegacySection />}
+        
+        <div className="bottom-spacing" />
       </main>
 
-      {/* iOS 26 Tab Bar */}
-      <footer className="ios-tab-bar">
-        <div className="tab-item active">🏠<span>الرئيسية</span></div>
-        <div className="tab-item">🎵<span>الأغاني</span></div>
-        <div className="tab-item">📸<span>المعرض</span></div>
-        <div className="tab-item">🔎<span>بحث</span></div>
-      </footer>
+      <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
     </div>
   );
 }
